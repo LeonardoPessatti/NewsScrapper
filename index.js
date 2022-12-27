@@ -107,9 +107,10 @@ app.get('/', (req, res) =>{
                 }
             }
 
-            res.json(noticias)
         }).catch((err) => console.log(err))
-
+    res.json(true)
 })
+
+
 
 app.listen(port, ()=> console.log('Running on port ' + port))
