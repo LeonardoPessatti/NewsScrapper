@@ -27,7 +27,7 @@ app.get('/', (req, res) =>{
             const html = response.data
             const $ = cheerio.load(html)
             const elementos = $('div.medium-uncollapse a, div.large-uncollapse a', html)
-
+            logExec(elementos.length)
             // Itera pelas notícias.
             elementos.each(async function (index) {
 
@@ -89,6 +89,14 @@ app.get('/', (req, res) =>{
                 } else {
                     console.log('ja tem ' + titulo)
                 }
+            }
+            async function logExec(numElementos) {
+                let connection = await mysql.createConnection(bd)
+                    let ins = await connection.execute('INSERT INTO execucao' +
+                        '(numElementos)' +
+                        'VALUES(?);', [numElementos])
+                    connection.end()
+                    return ins
             }
 
         }).catch((err) => console.log(err))
