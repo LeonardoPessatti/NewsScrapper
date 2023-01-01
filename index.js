@@ -64,7 +64,6 @@ function scrapG1(){
                         imagem = $n('amp-img', htmlNot).first().attr('src')
                         insere(link, titulo, resumo, imagem, 'G1')
 
-                        // Inclui tudo no array final
                     }).then(async function () {
 
                     }).catch((err) => console.log(err))
@@ -164,7 +163,7 @@ async function logExec(numElementos, fonte) {
     let connection = await mysql.createConnection(bd)
     let ins = await connection.execute('INSERT INTO execucao' +
         '(numElementos, fonte)' +
-        'VALUES(?,?);', [numElementos, fonte])
+        'VALUES(?,?);', [numElementos, 'node - ' + fonte])
     connection.end()
     return ins
 }
