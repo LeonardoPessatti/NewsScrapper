@@ -22,7 +22,7 @@ app.get('/', async (req, res) =>{
     await scrapG1()
     await scrapND()
 
-    res.text('OK - ' + req.socket.remoteAddress)
+    res.json('OK - ' + req.socket.remoteAddress)
 })
 
 async function scrapG1(){
