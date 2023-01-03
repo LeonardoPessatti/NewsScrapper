@@ -17,15 +17,15 @@ const bd = {
 }
 
 
-app.get('/', (req, res) =>{
+app.get('/', async (req, res) =>{
 
-    scrapG1()
-    scrapND()
+    await scrapG1()
+    await scrapND()
 
-    res.json(true)
+    res.text('OK - ' + req.socket.remoteAddress)
 })
 
-function scrapG1(){
+async function scrapG1(){
     //Pega a lista de notícias.
     axios.get('https://g1.globo.com/sc/santa-catarina/').then((response) => {
         const html = response.data
@@ -74,7 +74,7 @@ function scrapG1(){
     }).catch((err) => console.log(err))
 }
 
-function scrapND(){
+async function scrapND(){
     //Pega a lista de notícias.
     axios.get('https://ndmais.com.br/santa-catarina/').then((response) => {
         const html = response.data
